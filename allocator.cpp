@@ -3,6 +3,7 @@
 #include <format>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 int generateRandomNumber(int min, int max) {
     static std::random_device rd; 
