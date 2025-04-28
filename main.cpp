@@ -1,7 +1,50 @@
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ranges>
 
-int main()
+std::string replaceAll(
+    const std::string& str,
+    const std::string& from,
+    const std::string& to)
 {
-    std::cout << "Hello, World!" << std::endl;
+    return str
+    | std::views::split(from)
+    | std::views::join_with(to)
+    | std::ranges::to<std::string>();
+}
+
+int main(int argc, char* argv[]) {
+    if (argc < 3) {
+        std::cerr << "Usage: " << argv[0] << " --analyzer=<analyzer_command> --allocator=<allocator_command>\n";
+        return 1;
+    }
+
+    std::string analyzer, allocator;
+
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg.rfind("--analyzer=", 0) == 0) {
+            analyzer = arg.substr(11); // Extract value after "--analyzer="
+        } else if (arg.rfind("--allocator=", 0) == 0) {
+            allocator = arg.substr(12); // Extract value after "--allocator="
+        }
+    }
+
+    if (analyzer.empty() || allocator.empty()) {
+        std::cerr << "Both --analyzer and --allocator arguments are required.\n";
+        return 1;
+    }
+    std::string command = replaceAll('"' + allocator + " | " + analyzer + '"', "/", "\\"); 
+#ifdef _WIN32
+    
+#endif
+    int result = std::system(command.c_str());
+
+    if (result != 0) {
+        std::cerr << "Error executing command: " << command << "\n";
+        return 1;
+    }
+
     return 0;
 }
