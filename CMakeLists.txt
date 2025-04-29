@@ -63,4 +63,12 @@ add_test(NAME MainTest56 COMMAND main "--allocator=$<TARGET_FILE:allocator> 2 50
 add_test(NAME MainTest57 COMMAND main "--allocator=$<TARGET_FILE:allocator> 2 1000" "--analyzer=$<TARGET_FILE:analyzer>")
 add_test(NAME MainTest58 COMMAND main "--allocator=$<TARGET_FILE:allocator> 2 5000" "--analyzer=$<TARGET_FILE:analyzer>")
 add_test(NAME MainTest59 COMMAND main "--allocator=$<TARGET_FILE:allocator> 2 10000" "--analyzer=$<TARGET_FILE:analyzer>")
-
+add_test(NAME MainTest61 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 2" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest62 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 10" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest63 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 20" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest64 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 50" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest65 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 100" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest66 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 500" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest67 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 1000" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest68 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 5000" "--analyzer=$<TARGET_FILE:analyzer>")
+add_test(NAME MainTest69 COMMAND main "--allocator=$<TARGET_FILE:allocator> 1 10000" "--analyzer=$<TARGET_FILE:analyzer>")
