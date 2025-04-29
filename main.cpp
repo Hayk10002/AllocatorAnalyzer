@@ -8,12 +8,19 @@ std::string replaceAll(
     const std::string& from,
     const std::string& to)
 {
-    return str
-    | std::views::split(from)
-    | std::views::join_with(to)
-    | std::ranges::to<std::string>();
-}
+    std::string result;
+    bool first = true;
 
+    for (auto&& part : std::views::split(str, std::views::all(from))) {
+        if (!first) {
+            result += to;
+        }
+        first = false;
+        result += std::string(part.begin(), part.end());
+    }
+
+    return result;
+}
 int main(int argc, char* argv[]) {
     if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << " --analyzer=<analyzer_command> --allocator=<allocator_command>\n";
@@ -35,9 +42,8 @@ int main(int argc, char* argv[]) {
         std::cerr << "Both --analyzer and --allocator arguments are required.\n";
         return 1;
     }
-    std::string command = replaceAll(allocator + " | " + analyzer, "/", "\\"); 
 #ifdef _WIN32
-    
+    std::string command = replaceAll(allocator + " | " + analyzer, "/", "\\");     
 #endif
     int result = std::system(command.c_str());
 
