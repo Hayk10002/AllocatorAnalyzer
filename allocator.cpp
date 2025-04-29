@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
         {
             arr.emplace_back(generateRandomNumber(1, 10000));
             arr.erase(std::remove_if(arr.begin(), arr.end(), [prob](const auto&) {
-                return generateRandomNumber(1, 100) < prob;
+                return generateRandomNumber(1, 100) <= prob;
             }), arr.end());
 
             std::cout << "Iteration End" << std::endl;
