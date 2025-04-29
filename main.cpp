@@ -42,8 +42,9 @@ int main(int argc, char* argv[]) {
         std::cerr << "Both --analyzer and --allocator arguments are required.\n";
         return 1;
     }
+    std::string command = allocator + " | " + analyzer;     
 #ifdef _WIN32
-    std::string command = replaceAll(allocator + " | " + analyzer, "/", "\\");     
+    command = replaceAll(command, "/", "\\");
 #endif
     int result = std::system(command.c_str());
 
