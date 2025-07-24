@@ -46,6 +46,7 @@ int main(int argc, char* argv[]) {
 #ifdef _WIN32
     command = replaceAll(command, "/", "\\");
 #endif
+    std::cout << "Executing command: " << command << "\n";
     int result = std::system(command.c_str());
 
     if (result != 0) {

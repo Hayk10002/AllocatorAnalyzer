@@ -27,7 +27,7 @@ public:
 
     T* allocate(size_type n) {
         if (n != MEMORY_BLOCK_SIZE / sizeof(T)) {
-            throw std::bad_alloc();
+            return std::allocator<T>::allocate(n);
         }
         if (free_blocks.empty()) 
             throw std::bad_alloc();
@@ -46,6 +46,7 @@ public:
 
     void deallocate(T* p, size_type n) {
         if (n != MEMORY_BLOCK_SIZE / sizeof(T)) {
+            std::allocator<T>::deallocate(p, n);
             return;
         }
         int block_offset = reinterpret_cast<unsigned char*>(p) - memory_pool;
